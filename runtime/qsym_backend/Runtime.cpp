@@ -184,6 +184,7 @@ void _sym_initialize(void) {
   g_solver = g_enhanced_solver; // for QSYM-internal use
   g_expr_builder = g_config.pruning ? PruneExprBuilder::create()
                                     : SymbolicExprBuilder::create();
+  Z3_set_ast_print_mode(*g_z3_context, Z3_PRINT_SMTLIB2_COMPLIANT);
 }
 
 SymExpr _sym_build_integer(uint64_t value, uint8_t bits) {
