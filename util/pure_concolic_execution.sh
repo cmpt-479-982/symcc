@@ -109,6 +109,7 @@ export SYMCC_ENABLE_LINEARIZATION=1
 
 # Run generation after generation until we don't generate new inputs anymore
 gen_count=0
+echo "" >> logs.log
 while true; do
     # Initialize the generation
     maybe_import
@@ -124,7 +125,10 @@ while true; do
             if [[ "$target " =~ " @@ " ]]; then
                 env SYMCC_INPUT_FILE=$f $timeout ${target[@]/@@/$f} >/dev/null 2>&1
             else
-                $timeout $target <$f >/dev/null 2>&1
+                # $timeout $target <$f >/dev/null 2>&1
+                echo "[EXPORT] PROG" >> logs.log
+                $timeout $target <$f >/dev/null 2>>logs.log
+                echo "[EXPORT] END_PROG" >> logs.log
             fi
 
             # Make the new test cases part of the next generation
