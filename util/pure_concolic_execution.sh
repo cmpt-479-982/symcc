@@ -109,7 +109,7 @@ export SYMCC_ENABLE_LINEARIZATION=1
 
 # Run generation after generation until we don't generate new inputs anymore
 gen_count=0
-echo "" >> logs.log
+echo "" > logs.log
 while true; do
     # Initialize the generation
     maybe_import
